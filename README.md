@@ -1,13 +1,9 @@
 # pyMALv2
 Python API wrapper for [MyAnimeList](https://myanimelist.net/), supporting MAL version 2 api.
-
-------
 > **Note: This is a work in progress and many endpoints have not been implemented. Expect a lot of bugs.**
 
 
 ## Usage
-
------
 Basic Usage:
 ```python
 
@@ -54,9 +50,6 @@ See `examples/example1.py` for an example on storing the tokens in a file so tha
 For more information, inspect the source code or [MAL api docs](https://myanimelist.net/apiconfig/references/api/v2). Wrapper API docs are not yet available.
 
 ## Currently Implemented Endpoints
-
------
-
 * Manga List Add/Update
   * https://myanimelist.net/apiconfig/references/api/v2#operation/manga_manga_id_my_list_status_put
 * Manga List Delete
@@ -73,11 +66,7 @@ For more information, inspect the source code or [MAL api docs](https://myanimel
   * https://myanimelist.net/apiconfig/references/api/v2#section/Authentication
 
 ## Contributing
-
-----
 Contributions are welcome. Please fork the repo and submit a pull request.
 
 ## License
-
-----
 MIT License
