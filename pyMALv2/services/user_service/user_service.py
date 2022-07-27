@@ -1,8 +1,8 @@
 import json
 
-from src.pyMALv2.auth import Authorization
-from src.pyMALv2.services.base import Base
-from src.pyMALv2.constants.mal_endpoints import *
+from ...auth import Authorization
+from ...services.base import Base
+from ...constants.mal_endpoints import *
 from .user_anime_list import UserAnimeList
 from .user_manga_list import UserMangaList
 from types import SimpleNamespace

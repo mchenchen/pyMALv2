@@ -1,4 +1,4 @@
-from src.pyMALv2.auth import Authorization
+from ..auth import Authorization
 import requests
 
 class Base():

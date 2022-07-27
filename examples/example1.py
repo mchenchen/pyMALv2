@@ -1,8 +1,8 @@
 import os
 
-from src.pyMALv2.auth import Authorization, OAuth
-from src.pyMALv2.enums import MangaListEntryStatuses, AnimeListEntryStatuses
-from src.pyMALv2.services import UserService
+from pyMALv2.auth import Authorization, OAuth
+from pyMALv2.enums import AnimeListEntryStatuses
+from pyMALv2.services import UserService
 
 auth = None
 

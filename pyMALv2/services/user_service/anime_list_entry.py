@@ -4,7 +4,7 @@ from types import SimpleNamespace
 from ..list_base import ListBase
 from ...auth import Authorization
 from ...enums import AnimeListEntryStatuses
-from src.pyMALv2.constants.mal_endpoints import *
+from ...constants.mal_endpoints import *
 
 
 class AnimeListEntry(ListBase):

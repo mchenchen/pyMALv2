@@ -2,7 +2,14 @@
 Python API wrapper for [MyAnimeList](https://myanimelist.net/), supporting MAL version 2 api.
 > **Note: This is a work in progress and many endpoints have not been implemented. Expect a lot of bugs.**
 
-
+## Installation
+```shell
+pip install pyMALv2
+```
+or
+```shell
+python setup.py install
+```
 ## Usage
 Basic Usage:
 ```python
