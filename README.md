@@ -39,15 +39,15 @@ user = UserService(auth)
 
 # Get anime list
 anime_list = user.anime_list.get()
-# This returns a paginated list of the user's anime list.
+# Returns a list of anime objects.
 
 ```
 
 Add/Update/Delete entry to user's anime or manga list:
 ```python
 user = UserService(auth)
-user.anime_list.entry('43608').update(...)
-user.manga_list.entry('43608').delete()
+user.anime_list.update(Anime(id=43608), status='watching')
+user.manga_list.delete(12)
 ```
 
 See `examples/example1.py` for an example on storing the tokens in a file so that you don't have to keep re-authorizing everytime your script runs. If you've ever worked with the google python api, it looks very similar.
@@ -57,6 +57,12 @@ See `examples/example1.py` for an example on storing the tokens in a file so tha
 For more information, inspect the source code or [MAL api docs](https://myanimelist.net/apiconfig/references/api/v2). Wrapper API docs are not yet available.
 
 ## Currently Implemented Endpoints
+* Search Anime/Manga
+  * https://myanimelist.net/apiconfig/references/api/v2#operation/anime_get
+  * https://myanimelist.net/apiconfig/references/api/v2#operation/manga_get
+* Get Anime/Manga
+  * https://myanimelist.net/apiconfig/references/api/v2#operation/anime_anime_id_get
+  * https://myanimelist.net/apiconfig/references/api/v2#operation/manga_manga_id_get
 * Manga List Add/Update
   * https://myanimelist.net/apiconfig/references/api/v2#operation/manga_manga_id_my_list_status_put
 * Manga List Delete
@@ -73,7 +79,7 @@ For more information, inspect the source code or [MAL api docs](https://myanimel
   * https://myanimelist.net/apiconfig/references/api/v2#section/Authentication
 
 ## Contributing
-Contributions are welcome. Please fork the repo and submit a pull request.
+Contributions are welcome. Please fork the repo and submit a pull request. Please ensure that the current tests pass before submitting a pull request.
 
 ## License
 MIT License

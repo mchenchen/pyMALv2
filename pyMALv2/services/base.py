@@ -25,3 +25,12 @@ class Base():
             response = requests.request(method, endpoint, headers=headers, params=params, data=data)
         return response
 
+    def _request_no_auth(self, method: str, endpoint: str, params: dict = None, data: dict = None):
+        headers = {
+            'X-MAL-CLIENT-ID': '{}'.format(self.auth.client_id),
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        return requests.request(method, endpoint, headers=headers, params=params, data=data)
+
+
+

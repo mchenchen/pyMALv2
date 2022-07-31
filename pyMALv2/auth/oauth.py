@@ -29,7 +29,6 @@ class RequestHandler(BaseHTTPRequestHandler):
 
 
 class OAuth():
-    tokens = None
 
     def __init__(self, client_id: str = None, client_secret: str = None, redirect_uri: str = None):
         self.client_id = client_id
@@ -83,7 +82,8 @@ class OAuth():
 
         :return: The tokens as a JSON string.
         """
-        return json.dumps(self.tokens)
+        # combine client_id and client_secret and tokens into one dict
+        return json.dumps({**self.tokens, 'client_id': self.client_id, 'client_secret': self.client_secret})
 
     def _get_user_tokens(self, authorization_code: str, code_verifier: str):
         """
@@ -126,5 +126,8 @@ class OAuth():
 
     def from_json_file(self, file_path: str):
         with open(file_path, 'r') as f:
-            self.tokens = json.load(f)
+            credentials = json.load(f)
+            self.client_id = credentials['client_id']
+            self.client_secret = credentials['client_secret']
+            self.redirect_uri = credentials['redirect_uri']
 
