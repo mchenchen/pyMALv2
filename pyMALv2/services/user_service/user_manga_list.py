@@ -93,7 +93,7 @@ class UserMangaList(Base):
             page = json.loads(r.text)
 
             for entry in page['data']:
-                results.append(UserMangaListEntry.from_dict(entry, self.auth))
+                results.append(UserMangaListEntry(auth=self.auth, manga=entry["node"], list_status=entry['list_status']))
 
             if 'next' not in page['paging']:
                 break

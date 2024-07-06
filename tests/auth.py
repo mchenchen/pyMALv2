@@ -1,5 +1,6 @@
 import os
-
+import sys
+sys.path.append(os.getcwd())
 from pyMALv2.auth import Authorization, OAuth
 
 auth = Authorization()

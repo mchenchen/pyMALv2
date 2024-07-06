@@ -30,7 +30,7 @@ class MangaService(Base):
             page = json.loads(r.text)
 
             for manga in page['data']:
-                results.append(Manga.from_dict(manga['node']))
+                results.append(Manga(**manga['node']))
 
             if not get_all:
                 break
@@ -59,5 +59,5 @@ class MangaService(Base):
         elif r.status_code != 200:
             raise Exception('MyAnimeList returned HTTP {} with message {}'.format(r.status_code, r.json['error']))
 
-        return Manga.from_dict(json.loads(r.text))
+        return Manga(**r.json())
 

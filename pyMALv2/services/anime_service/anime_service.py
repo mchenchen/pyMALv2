@@ -29,7 +29,7 @@ class AnimeService(Base):
             page = json.loads(r.text)
 
             for anime in page['data']:
-                results.append(Anime.from_dict(anime['node']))
+                results.append(Anime(**anime['node']))
 
             if not get_all:
                 break
@@ -58,4 +58,4 @@ class AnimeService(Base):
         elif r.status_code != 200:
             raise Exception('MyAnimeList returned HTTP {} with message {}'.format(r.status_code, r.json['error']))
 
-        return Anime.from_dict(json.loads(r.text))
+        return Anime(**r.json())

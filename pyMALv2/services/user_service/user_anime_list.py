@@ -93,7 +93,7 @@ class UserAnimeList(Base):
             page = json.loads(r.text)
 
             for entry in page['data']:
-                results.append(UserAnimeListEntry.from_dict(entry, self.auth))
+                results.append(UserAnimeListEntry(auth=self.auth, anime=entry["node"], list_status=entry['list_status']))
 
             if 'next' not in page['paging']:
                 break

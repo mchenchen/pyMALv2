@@ -7,8 +7,7 @@ from ..constants.mal_endpoints import MAL_MANGA_LIST_ENTRY_ENDPOINT
 from ..enums import MangaListEntryStatuses
 from ..services.base import Base
 
-if TYPE_CHECKING:
-    from .manga import Manga
+from .manga import Manga
 from .utils import *
 from .manga_my_list_status import MangaMyListStatus
 
@@ -20,23 +19,9 @@ class UserMangaListEntry(Base):
 
     def __init__(self, manga, list_status, auth):
         super().__init__(auth)
-        self.manga = manga
-        self.list_status = list_status
+        self.manga = Manga(**manga)
+        self.list_status = MangaMyListStatus(**list_status)
 
-    @staticmethod
-    def from_dict(obj: Any, auth: Authorization) -> 'UserMangaListEntry':
-        from .manga import Manga  # Can't import at top of file because of circular dependency
-        assert isinstance(obj, dict)
-        manga = from_union([Manga.from_dict, from_none], obj.get("node"))
-        list_status = from_union([MangaMyListStatus.from_dict, from_none], obj.get("list_status"))
-        return UserMangaListEntry(manga, list_status, auth)
-
-    def to_dict(self) -> dict:
-        from .manga import Manga  # Can't import at top of file because of circular dependency
-        result: dict = {}
-        result["manga"] = from_union([lambda x: to_class(Manga, x), from_none], self.anime)
-        result["list_status"] = from_union([lambda x: to_class(MangaMyListStatus, x), from_none], self.list_status)
-        return result
 
     def delete(self):
         r = self._request('DELETE', MAL_MANGA_LIST_ENTRY_ENDPOINT(self.manga.id))
@@ -75,7 +60,7 @@ class UserMangaListEntry(Base):
         })
 
         if r.status_code == 200:
-            self.list_status = MangaMyListStatus.from_dict(json.loads(r.text))
+            self.list_status = MangaMyListStatus(**r.json())
             return self
         else:
             raise Exception(f'Error updating manga list entry: {r.text}')
