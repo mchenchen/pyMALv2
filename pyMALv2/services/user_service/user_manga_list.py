@@ -89,7 +89,7 @@ class UserMangaList(Base):
         results = []
         while True:
             r = self._request('GET', MAL_GET_MANGA_LIST_ENDPOINT(),
-                              params={'limit': 1000, 'fields': 'list_status', offset: offset})
+                              params={'limit': 1000, 'fields': 'list_status', offset: offset, 'nsfw': True})
             page = json.loads(r.text)
 
             for entry in page['data']:
